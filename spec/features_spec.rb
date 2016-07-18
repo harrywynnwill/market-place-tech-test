@@ -9,6 +9,10 @@ RSpec.describe "FEATURE TESTS", feature: true do
   let(:item3) {{product_code: 003, name: "Kids T-shirt", price: 19.95}}
 
 
+    let(:item1) {001}
+    let(:item2) {002}
+    let(:item3) {003}
+
   it "calculates the price of 001, 002, 003 to £66.78" do
     subject
     p subject.scan item1

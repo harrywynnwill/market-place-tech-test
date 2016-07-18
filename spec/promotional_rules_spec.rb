@@ -20,6 +20,7 @@ RSpec.describe PromotionalRules do
       expect(subject.ten_percent_discount? 65).to eq true
     end
   end
+
   describe "#basket_total" do
     it "sums up the total of all the items in the basket" do
       expect(subject.basket_totaller checkout_basket).to eq 74.2
@@ -41,32 +42,13 @@ RSpec.describe PromotionalRules do
     end
   end
 
-
-  describe "#scan" do
-    it "scans the items" do
-
-      subject.scan item1
-      subject.scan item2
-      expect(subject.scan item3).to eq [["Lavender Heart", 9.25], ["Personalised cufflinks", 45.0], ["Kids T-shirt", 19.95]]
-
-    end
-  end
-
   describe "#remove_ten_percent" do
     it "removes 10% off the total bill" do
       expect(subject.remove_ten_percent 100).to eq 90
     end
   end
 
-  describe "#total" do
-    it "returns the total of the basket" do
-      subject.scan item1
-      subject.scan item2
-      subject.scan item3
-      expect(subject.total).to eq 66.78
 
-    end
-  end
 
 
 end
