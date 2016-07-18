@@ -20,9 +20,10 @@ class PromotionalRules
   end
 
   def discount? basket, offer = PRODUCT_ON_OFFER, quantity = PRODUCT_ON_OFFER_QTY
-     basket.each{|item, price| p item.count(offer)}
+    counts = Hash.new(0)
+     basket.each{|item| item[0] == offer ? counts["offer"]+=1 : "" }
     # p basket.eachcount("Lavender Heart")
-    # p offer
+     p counts["offer"]
 
   end
 
