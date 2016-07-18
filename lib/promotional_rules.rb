@@ -5,9 +5,13 @@ class PromotionalRules
   DISCOUNT_TOTAL = 60
   PRODUCT_ON_OFFER = "Lavender Heart"
   PRODUCT_ON_OFFER_QTY = 2
+  DISCOUNT_PRICE = 8.50
   PRODUCTS = [{product_code: 001, name: "Lavender Heart", price: 9.25},
     {product_code: 002, name: "Personalised cufflinks", price: 45.00},
     {product_code: 003, name: "Kids T-shirt", price: 19.95}]
+
+
+    attr_reader :basket
 
 
   def initialize
@@ -23,8 +27,24 @@ class PromotionalRules
     counts = Hash.new(0)
      basket.each{|item| item[0] == offer ? counts["offer"]+=1 : "" }
     # p basket.eachcount("Lavender Heart")
-     p counts["offer"]
+      counts["offer"] > quantity
 
+  end
+
+  def discount_price_changer basket, new_price = DISCOUNT_PRICE, offer = PRODUCT_ON_OFFER
+    basket.each do |items|
+      p items[0] == offer ? items[1] = new_price : items[1] = items[1]
+      #  p items[0] == offer ? items[1] = new_price : items[1] = price
+
+      items.map do |item|
+
+# item == offer item = item && price = new_price : item = item && price = price
+        # if item == offer
+        #   price = new_price
+         end
+       end
+    # end
+    p basket
   end
 
 
@@ -41,7 +61,16 @@ class PromotionalRules
     basket.map{|item, price|  price}.inject{ |acc , item| acc += item }
 
   end
+  def remove_ten_percent basket
+    basket * 0.9
+  end
 
+  def total basket
+    # ten_percent_discount? basket ? remove_ten_percent basket
+    # p discount? basket
+    # p basket_totaller basket
+
+  end
 
 
 

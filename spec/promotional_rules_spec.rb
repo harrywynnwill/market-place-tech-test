@@ -35,6 +35,12 @@ RSpec.describe PromotionalRules do
     end
   end
 
+  describe "#discount_price_changer" do
+    it "changes the price of the product on discout" do
+      subject.discount_price_changer checkout_basket
+    end
+  end
+
 
   describe "#scan" do
     it "scans the items" do
@@ -46,6 +52,21 @@ RSpec.describe PromotionalRules do
     end
   end
 
+  describe "#remove_ten_percent" do
+    it "removes 10% off the total bill" do
+      expect(subject.remove_ten_percent 100).to eq 90
+    end
+  end
+
+  describe "#total" do
+    it "returns the total of the basket" do
+      subject.scan item1
+      subject.scan item2
+      subject.scan item3
+      subject.total subject.basket
+      subject.basket
+    end
+  end
 
 
 end
