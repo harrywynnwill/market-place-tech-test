@@ -17,7 +17,7 @@ RSpec.describe PromotionalRules do
 
   describe "#ten_percent_discount" do
     it "deducts 10% of the total if you spend over £60" do
-      expect(subject.ten_percent_discount? checkout_basket).to eq true
+      expect(subject.ten_percent_discount? 65).to eq true
     end
   end
   describe "#basket_total" do
@@ -63,8 +63,8 @@ RSpec.describe PromotionalRules do
       subject.scan item1
       subject.scan item2
       subject.scan item3
-      subject.total subject.basket
-      subject.basket
+      expect(subject.total).to eq 66.78
+
     end
   end
 

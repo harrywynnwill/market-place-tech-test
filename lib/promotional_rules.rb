@@ -18,33 +18,32 @@ class PromotionalRules
     @basket = []
 
   end
-  def ten_percent_discount? basket
-      basket_total = basket_totaller basket
-      basket_total > DISCOUNT_TOTAL
+  def ten_percent_discount? total
+      total > DISCOUNT_TOTAL
   end
 
   def discount? basket, offer = PRODUCT_ON_OFFER, quantity = PRODUCT_ON_OFFER_QTY
     counts = Hash.new(0)
-     basket.each{|item| item[0] == offer ? counts["offer"]+=1 : "" }
+     basket.each{|item| item[0] == offer ? counts[offer]+=1 : "" }
     # p basket.eachcount("Lavender Heart")
-      counts["offer"] > quantity
+      counts[offer] > quantity
 
   end
 
   def discount_price_changer basket, new_price = DISCOUNT_PRICE, offer = PRODUCT_ON_OFFER
     basket.each do |items|
-      p items[0] == offer ? items[1] = new_price : items[1] = items[1]
+      items[0] == offer ? items[1] = new_price : items[1] = items[1]
       #  p items[0] == offer ? items[1] = new_price : items[1] = price
 
-      items.map do |item|
+
 
 # item == offer item = item && price = new_price : item = item && price = price
         # if item == offer
         #   price = new_price
-         end
+
        end
     # end
-    p basket
+    basket
   end
 
 
@@ -58,18 +57,20 @@ class PromotionalRules
   end
 
   def basket_totaller basket
-    basket.map{|item, price|  price}.inject{ |acc , item| acc += item }
+    basket.map{|item, price| price}.inject{ |acc , item| acc += item }
 
   end
   def remove_ten_percent basket
     basket * 0.9
   end
 
-  def total basket
-    # ten_percent_discount? basket ? remove_ten_percent basket
-    # p discount? basket
-    # p basket_totaller basket
+  def total
+     discount_price_changer if discount? @basket
 
+      total = basket_totaller @basket
+
+      p total
+     remove_ten_percent total if ten_percent_discount? total
   end
 
 
