@@ -27,8 +27,8 @@ class Checkout
   def total
     @promotional_rules.discount_promotion @basket
     basket_totaller @basket
-    total = @promotional_rules.ten_percent_promotion @total
-    currency_formatter total
+    grand_total = @promotional_rules.ten_percent_promotion @total
+    currency_formatter grand_total
   end
 
   private

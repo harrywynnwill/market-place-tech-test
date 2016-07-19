@@ -14,14 +14,14 @@ RSpec.describe Checkout do
 
   let(:basket_with_product1) {[["Lavender Heart", 9.25]]}
 
-  let(:basket1){[["Lavender Heart", 9.25], ["Personalised cufflinks", 45.0], ["Kids T-shirt", 19.95]]}
+  let(:basket_with_all_products) {[["Lavender Heart", 9.25], ["Personalised cufflinks", 45.0], ["Kids T-shirt", 19.95]]}
 
   describe "#scan" do
     it "scans the items and adds them to a basket" do
       subject.scan item1
       subject.scan item2
       subject.scan item3
-      expect(subject.basket).to eq basket1
+      expect(subject.basket).to eq basket_with_all_products
     end
   end
 
