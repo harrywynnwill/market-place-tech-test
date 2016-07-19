@@ -1,5 +1,6 @@
 require "checkout"
 RSpec.describe Checkout do
+
   subject(:checkout) {Checkout.new(promotional_rules)}
   let(:promotional_rules) {instance_spy("PromotionalRules")}
 
@@ -11,8 +12,9 @@ RSpec.describe Checkout do
   let(:item2) {002}
   let(:item3) {003}
 
-  let(:basket1){[["Lavender Heart", 9.25], ["Personalised cufflinks", 45.0], ["Kids T-shirt", 19.95]]}
+  let(:basket_with_product1) {[["Lavender Heart", 9.25]]}
 
+  let(:basket1){[["Lavender Heart", 9.25], ["Personalised cufflinks", 45.0], ["Kids T-shirt", 19.95]]}
 
   describe "#scan" do
     it "scans the items and adds them to a basket" do
@@ -26,12 +28,9 @@ RSpec.describe Checkout do
   describe "#total" do
     it "returns the total of the basket" do
       subject.scan item1
-      subject.scan item2
-      subject.scan item3
-      expect(subject.total).to have_recieved(:discount_price_changer)
-
+      subject.total
+      expect(promotional_rules).to have_received(:discount_promotion).with(array_including(basket_with_product1))
+      expect(promotional_rules).to have_received(:ten_percent_promotion)
     end
   end
-
-
 end

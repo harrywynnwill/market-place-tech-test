@@ -12,33 +12,33 @@ RSpec.describe PromotionalRules do
 
   let(:basket) {[product1,product2,product3]}
   let(:checkout_basket) {[["Lavender Heart", 9.25], ["Personalised cufflinks", 45.0], ["Kids T-shirt", 19.95]]}
-  let(:checkout_basket_lavender) {[["Lavender Heart", 9.25], ["Lavender Heart", 9.25], ["Lavender Heart", 9.25],["Kids T-shirt", 19.95]]}
+  let(:checkout_discount) {[["Lavender Heart", 9.25], ["Lavender Heart", 9.25], ["Lavender Heart", 9.25],["Kids T-shirt", 19.95]]}
+  let(:checkout_discount_applied) {[["Lavender Heart", 8.50], ["Lavender Heart", 8.50], ["Lavender Heart", 8.50],["Kids T-shirt", 19.95]]}
 
-
-  describe "#ten_percent_discount" do
-    it "deducts 10% of the total if you spend over £60" do
-      expect(subject.ten_percent_discount? 65).to eq true
+  describe "#discount_promotion" do
+    it "checks the basket and adjusts accordingly" do
+      expect(subject.discount_price_changer checkout_discount).to eq  checkout_discount
+      expect(subject.discount_price_changer checkout_discount).to eq  checkout_discount_applied
     end
   end
 
-  describe "#basket_total" do
-    it "sums up the total of all the items in the basket" do
-      expect(subject.basket_totaller checkout_basket).to eq 74.2
+  describe "#ten_percent_promotion" do
+    it "checks to see if the total is due for promotion and makes adjustments" do
+      expect(subject.ten_percent_promotion 100).to eq 90
+      expect(subject.ten_percent_promotion 59).to eq 59
     end
   end
 
-  describe "#two_or_more_lavender_hearts?" do
+  describe "#discount_qualified?" do
     it "returns true if more than two lavender hearts" do
-      subject.scan item1
-      subject.scan item1
-      expect(subject.discount? checkout_basket_lavender).to be_truthy
-      expect(subject.discount? checkout_basket).to be_falsey
+      expect(subject.discount_qualified? checkout_discount).to be_truthy
+      expect(subject.discount_qualified? checkout_basket).to be_falsey
     end
   end
 
-  describe "#discount_price_changer" do
-    it "changes the price of the product on discout" do
-      subject.discount_price_changer checkout_basket
+  describe "#ten_percent_discount?" do
+    it "checks to seee if you qualify for the 10% discout" do
+      expect(subject.ten_percent_discount? 65).to eq true
     end
   end
 
@@ -47,6 +47,15 @@ RSpec.describe PromotionalRules do
       expect(subject.remove_ten_percent 100).to eq 90
     end
   end
+
+  describe "#discount_price_changer" do
+    it "changes the price of the product on discout" do
+      expect(subject.discount_price_changer checkout_basket).to eq checkout_basket
+
+    end
+  end
+
+
 
 
 
