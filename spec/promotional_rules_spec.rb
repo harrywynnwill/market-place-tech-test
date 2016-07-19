@@ -1,16 +1,9 @@
 require "promotional_rules"
 
 RSpec.describe PromotionalRules do
+
   subject(:promotional_rules) {PromotionalRules.new}
-  let(:product1) { {product_code: 001, name: "Lavender Heart", price: 9.25} }
-  let(:product2) {{product_code: 002, name: "Personalised cufflinks", price: 45.00}}
-  let(:product3) {{product_code: 003, name: "Kids T-shirt", price: 19.95}}
 
-  let(:item1) {001}
-  let(:item2) {002}
-  let(:item3) {003}
-
-  let(:basket) {[product1,product2,product3]}
   let(:checkout_basket) {[["Lavender Heart", 9.25], ["Personalised cufflinks", 45.0], ["Kids T-shirt", 19.95]]}
   let(:checkout_discount) {[["Lavender Heart", 9.25], ["Lavender Heart", 9.25], ["Lavender Heart", 9.25],["Kids T-shirt", 19.95]]}
   let(:checkout_discount_applied) {[["Lavender Heart", 8.50], ["Lavender Heart", 8.50], ["Lavender Heart", 8.50],["Kids T-shirt", 19.95]]}
@@ -23,7 +16,7 @@ RSpec.describe PromotionalRules do
   end
 
   describe "#ten_percent_promotion" do
-    it "checks to see if the total is due for promotion and makes adjustments" do
+    it "checks to see if the total is due for 10% and makes adjustments" do
       expect(subject.ten_percent_promotion 100).to eq 90
       expect(subject.ten_percent_promotion 59).to eq 59
     end
@@ -54,10 +47,4 @@ RSpec.describe PromotionalRules do
 
     end
   end
-
-
-
-
-
-
 end

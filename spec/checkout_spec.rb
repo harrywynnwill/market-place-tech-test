@@ -27,10 +27,11 @@ RSpec.describe Checkout do
 
   describe "#total" do
     it "returns the total of the basket" do
+      allow(promotional_rules).to receive(:ten_percent_promotion).and_return(9.25)
       subject.scan item1
-      subject.total
+      expect(subject.total).to eq "£9.25"
       expect(promotional_rules).to have_received(:discount_promotion).with(array_including(basket_with_product1))
-      expect(promotional_rules).to have_received(:ten_percent_promotion)
+      expect(promotional_rules).to have_received(:ten_percent_promotion).with(9.25)
     end
   end
 end
