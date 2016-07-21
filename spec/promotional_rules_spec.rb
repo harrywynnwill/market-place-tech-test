@@ -31,7 +31,7 @@ RSpec.describe PromotionalRules do
 
   describe "#ten_percent_discount?" do
     it "checks to seee if you qualify for the 10% discout" do
-      expect(subject.ten_percent_discount? 65).to eq true
+      expect(subject.ten_percent_discount? 65).to be_truthy
     end
   end
 

@@ -1,20 +1,17 @@
 # market-place-tech-test
 
 
+As a person from the marketing team.
+So that we can offer our clients promotions on our products on our site.
+I would like the site to have a promotions rules functionality added.
 
+As a person from the marketing team.
+So that we can change with our consumers tastes.
+I would like the system to be flexible regarding promotional rules.
 
-as a person from the marketing team
-So that we can offer our clients promotions on our products on our site
-I would like the site to have a promotions rules functionality added
-
-as a person from the marketing team
-so that we can change with our consumers tastes
-I would like the system to be flexible regarding promotional rules
-
-as a checkout person
-so that the promotional rules can be added to our legacy checkout system
-the client/checkout person must be able to scan the products in any order
-
+As a checkout person
+So that the promotional rules can be added to our legacy checkout system
+the checkout person must be able to scan the products in any order
 
 
 ## Shopping List
