@@ -30,7 +30,7 @@ RSpec.describe PromotionalRules do
   end
 
   describe "#ten_percent_discount?" do
-    it "checks to seee if you qualify for the 10% discout" do
+    it "checks to see if you qualify for the 10% discount" do
       expect(subject.ten_percent_discount? 65).to be_truthy
     end
   end
@@ -44,7 +44,6 @@ RSpec.describe PromotionalRules do
   describe "#discount_price_changer" do
     it "changes the price of the product on discout" do
       expect(subject.discount_price_changer checkout_basket).to eq checkout_basket
-
     end
   end
 end
